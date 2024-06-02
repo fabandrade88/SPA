@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SPA</title>
 </head>
+
 <body>
   <nav>
     <a href="/" onclick="route()">Home</a>
@@ -27,13 +28,20 @@
       event = event || window.event
       event.preventDefault()
 
+      window.history.pushState({},"", event.target.href)
+
       handle()
     }
 
     function handle() {
-      const pathname = window.location.pathname
+      const {pathname} = window.location
+      const route = routes[pathname] || routes[404]
+
+      fetch(route).then (data.text())
+
     }
 
   </script>
+
 </body>
 </html>
